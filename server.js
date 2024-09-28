@@ -7,6 +7,7 @@ const { connect } = require("mongoose");
 const connectDb = require("./config/db");
 
 dotenv.config();
+
 connectDb()
 
 const app = express();
