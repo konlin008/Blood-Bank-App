@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
         return false;
       },
     },
-    hospital: {
+    hospitalName: {
       type: String,
       required: function () {
         if (this.role === "hospital") {
@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
-    websit: {
+    website: {
       type: String,
     },
     address: {
@@ -56,4 +56,4 @@ const userSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("users", userSchema); 

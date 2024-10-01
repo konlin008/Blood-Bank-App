@@ -1,8 +1,8 @@
 const express = require("express");
 const dotenv = require('dotenv');
-const colors= require('colors');
-const morgan= require('morgan');
-const cors= require('cors');
+const colors = require('colors');
+const morgan = require('morgan');
+const cors = require('cors');
 const { connect } = require("mongoose");
 const connectDb = require("./config/db");
 
@@ -17,7 +17,7 @@ app.use(cors())
 app.use(morgan('dev'))
 
 app.use('/api/v1/test', require('./routes/testRouts'));
-
+app.use('/api/v1/auth', require("./routes/authRoutes"));
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
