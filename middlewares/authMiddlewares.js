@@ -6,11 +6,11 @@ module.exports = async (req, res, next) => {
       if (err) {
         return res.status(401).send({
           succses: false,
-          message:"Auth Failed"
+          message: "Auth Failed",
         });
       }
-      else{
-        req.body.userId = decode.id
+      else {
+        req.body.userId = decode.userId;
         next();
       }
     });
