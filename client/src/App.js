@@ -1,7 +1,16 @@
+import { Routes, Route } from 'react-router-dom';
+import HomePages from './pages/HomePages';
+import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
+
 function App() {
   return (
     <div>
-      <h1>Blood Bank App</h1>
+      <Routes>
+        <Route path='/' element={<HomePages />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+      </Routes>
     </div>
   );
 }
