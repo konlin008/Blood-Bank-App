@@ -10,6 +10,11 @@ function App() {
         <Route path="/" element={<HomePages />} />
         <Route path="/login" element={<Loggin />} />
         <Route path="/register" element={<Register />} />
+        {/* Example of adding a splat route (wildcard route) */}
+        <Route
+          path="/*"
+          future={{ v7_relativeSplatPath: true }} // Enable the flag here
+        />
       </Routes>
     </div>
   );
