@@ -1,4 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { userLogin } from "./authAction";
+import { token } from "morgan";
 
 // Example async action
 export const fetchUser = createAsyncThunk("auth/fetchUser", async (userId) => {
@@ -7,37 +9,32 @@ export const fetchUser = createAsyncThunk("auth/fetchUser", async (userId) => {
 });
 
 const initialState = {
+  loading: false,
   user: null,
-  status: "idle", 
+  token: null,
   error: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
-  reducers: {
-    login(state, action) {
-      state.user = action.payload;
-    },
-    logout(state) {
-      state.user = null;
-    },
-  },
+  initialState: initialState,
+  reducers: {},
+
   extraReducers: (builder) => {
-    builder
-      .addCase(fetchUser.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(fetchUser.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.user = action.payload;
-      })
-      .addCase(fetchUser.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.error.message;
-      });
+    builder.addCase(userLogin.pending, (state) => {
+      state.loading = true;
+      state.error = null;
+    });
+    builder.addCase(userLogin.fulfilled, (state, { payload }) => {
+      state.loading = false;
+      state.user = payload.user;
+      state.token = payload.token;
+    });
+    builder.addCase(userLogin.rejected, (state, payload) => {
+      state.loading = false;
+      state.error = payload;
+    });
   },
 });
 
-export const { login, logout } = authSlice.actions;
 export default authSlice;
