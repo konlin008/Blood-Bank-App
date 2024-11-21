@@ -1,17 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { userLogin } from "./authAction";
-import { token } from "morgan";
+import { createSlice } from "@reduxjs/toolkit";
+import { getCurrentUser, userLogin, userRegister } from "./authAction";
+//import { token } from "morgan";
+const token = localStorage.getItem('token') ? localStorage.getItem('token') : null
 
-// Example async action
-export const fetchUser = createAsyncThunk("auth/fetchUser", async (userId) => {
-  const response = await fetch(`/api/user/${userId}`);
-  return response.json();
-});
+
 
 const initialState = {
   loading: false,
   user: null,
-  token: null,
+  token,
   error: null,
 };
 
@@ -21,6 +18,7 @@ const authSlice = createSlice({
   reducers: {},
 
   extraReducers: (builder) => {
+    //login user
     builder.addCase(userLogin.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -34,6 +32,34 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = payload;
     });
+        //REGISTER user
+        builder.addCase(userRegister.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        });
+        builder.addCase(userRegister.fulfilled, (state, { payload }) => {
+          state.loading = false;
+          state.user = payload.user;
+          
+        });
+        builder.addCase(userRegister.rejected, (state, payload) => {
+          state.loading = false;
+          state.error = payload;
+        });
+        //current user
+        builder.addCase(getCurrentUser.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        });
+        builder.addCase(getCurrentUser.fulfilled, (state, { payload }) => {
+          state.loading = false;
+          state.user = payload.user;
+          
+        });
+        builder.addCase(getCurrentUser.rejected, (state, payload) => {
+          state.loading = false;
+          state.error = payload;
+        });
   },
 });
 
