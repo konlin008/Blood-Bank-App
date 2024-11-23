@@ -41,3 +41,15 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* navbar */
+.navbar {
+  background-color: black;
+  color:white !important;
+}
+.nav-link,
+.navbar-brand{
+  background-color:black !important;
+  color: white !important;
+}
