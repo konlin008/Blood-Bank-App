@@ -1,10 +1,20 @@
 import React from "react";
 import { MdBloodtype } from "react-icons/md";
 import { FaUserMd } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const { user } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+
+  //logout handler
+
+  const handellogout = () => {
+    localStorage.clear();
+    alert("Logout Successfully");
+    navigate("/login");
+  };
 
   return (
     <>
@@ -18,12 +28,13 @@ const Header = () => {
             <li className="nav-item mx-3">
               <p className="nav-link">
                 <FaUserMd />
-                welcome {user.name}
-                
+                Welcome {user?.name || "Guest"}
               </p>
             </li>
             <li className="nav-item mx-3">
-              <button className="btn btn-danger">logout</button>
+              <button className="btn btn-danger" onClick={handellogout}>
+                logout
+              </button>
             </li>
           </ul>
         </div>
