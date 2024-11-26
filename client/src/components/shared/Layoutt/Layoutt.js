@@ -4,10 +4,15 @@ import Header from './Header';
 const Layoutt = ({children}) => {
   return (
     <>
-      <div className='header'> 
+      <div className="header">
         <Header />
       </div>
-      <div className='content'>{children}</div>
+      <div className="row g-0">
+        <div className="col-md-3">
+          <sidebar/>
+        </div>
+        <div className="col-md-9">{children}</div>
+      </div>
     </>
   );
 };

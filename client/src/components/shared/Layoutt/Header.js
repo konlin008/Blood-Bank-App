@@ -28,7 +28,9 @@ const Header = () => {
             <li className="nav-item mx-3">
               <p className="nav-link">
                 <FaUserMd />
-                Welcome {user?.name || "Guest"}
+                Welcome {user?.name || user?.hospitalName || user?.orgnisationName}{" "}
+                 &nbsp;
+                <span className="badge text-bg-secondary">{user?.role}</span>
               </p>
             </li>
             <li className="nav-item mx-3">
