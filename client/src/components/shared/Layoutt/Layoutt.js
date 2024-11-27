@@ -9,7 +9,7 @@ const Layoutt = ({children}) => {
       </div>
       <div className="row g-0">
         <div className="col-md-3">
-          <sidebar/>
+        sidebar 
         </div>
         <div className="col-md-9">{children}</div>
       </div>
