@@ -1,7 +1,8 @@
-import React from 'react';
-import Header from './Header';
+import React from "react";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 
-const Layoutt = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <>
       <div className="header">
@@ -9,7 +10,7 @@ const Layoutt = ({children}) => {
       </div>
       <div className="row g-0">
         <div className="col-md-3">
-        sidebar 
+          <Sidebar />
         </div>
         <div className="col-md-9">{children}</div>
       </div>
@@ -17,4 +18,4 @@ const Layoutt = ({children}) => {
   );
 };
 
-export default Layoutt;
+export default Layout;
