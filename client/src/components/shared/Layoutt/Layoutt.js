@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const Layout = ({ children }) => {
+const Layoutt = ({ children }) => {
   return (
     <>
       <div className="header">
@@ -18,4 +18,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default Layoutt;

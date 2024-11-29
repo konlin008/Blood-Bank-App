@@ -29,9 +29,14 @@
 .active {
     background-color: white;
     padding: 10px;
+    
 }
 
-.active a,
-.active i {
+.active a
+ {
     color: black;
 }
+
+
+
+

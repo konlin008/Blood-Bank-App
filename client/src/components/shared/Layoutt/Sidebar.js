@@ -12,8 +12,11 @@ const Sidebar = () => {
           {userMenu.map((menu) => {
             const isActive = location.pathname === menu.path;
             return (
-              <div className={`menu-item ${isActive && "active"}`}>
-                <i className="{menu.icon}"></i>
+              <div 
+                key={menu.path} // Add a unique key here
+                className={`menu-item ${isActive && "active"}`}
+              >
+                <i className={menu.icon}></i> {/* Fixed className syntax */}
                 <Link to={menu.path}>{menu.name}</Link>
               </div>
             );
