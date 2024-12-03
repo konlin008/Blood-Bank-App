@@ -8,7 +8,7 @@ const HomePages = () => {
   const { loading, error } = useSelector((state) => state.auth);
   return (
     <Layoutt>
-      {error && <span>{alert(error)}</span>}
+      {error && <div className="alert alert-danger">{error}</div>}
       {loading ? (
         <Sspinner />
       ) : (

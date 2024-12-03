@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 const Modal = () => {
-  const { inventoryType, seIinventoryType } = useState("in");
-  const { bloodGroup, setBloodGroup } = useState("");
-  const { quantity, setQuantity } = useState("");
-  const { donarEmail, setDonarEmail } = useState("");
+  const [, setInventoryType] = useState("in");
+  const [bloodGroup, setBloodGroup] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [donarEmail, setDonarEmail] = useState("");
 
   return (
     <>
@@ -36,32 +36,77 @@ const Modal = () => {
                 <div className="form-check ms-3">
                   <input
                     type="radio"
-                    name="inRadio"
+                    id="in"
+                    name="inventoryType"
                     defaultChecked
-                    value={"in"}
-                    onChange={(e) => seIinventoryType(e.target.value)}
+                    value="in"
+                    onChange={(e) => setInventoryType(e.target.value)}
                     className="form-check-input"
                   />
-                  <label htmlFor="in" className="fom-check-label">
+                  <label htmlFor="in" className="form-check-label">
                     IN
                   </label>
                 </div>
                 <div className="form-check ms-3">
                   <input
                     type="radio"
-                    name="inRadio"
-                    defaultChecked
-                    value={"out"}
-                    onChange={(e) => seIinventoryType(e.target.value)}
+                    id="out"
+                    name="inventoryType"
+                    value="out"
+                    onChange={(e) => setInventoryType(e.target.value)}
                     className="form-check-input"
                   />
-                  <label htmlFor="out" className="fom-check-label">
+                  <label htmlFor="out" className="form-check-label">
                     OUT
                   </label>
                 </div>
               </div>
             </div>
             <div className="modal-footer">
+              <select
+                className="form-select"
+                aria-label="Default select example"
+                value={bloodGroup}
+                onChange={(e) => setBloodGroup(e.target.value)}
+              >
+                <option value="">Open this select menu</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+              </select>
+              <div className="container">
+                <div className="mb-3">
+                  <label htmlFor="donarEmail" className="form-label">
+                    Donar Email
+                  </label>
+                  <input
+                    type="email"
+                    id="donarEmail"
+                    className="form-control"
+                    value={donarEmail}
+                    onChange={(e) => setDonarEmail(e.target.value)}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="quantity" className="form-label">
+                    Quantity
+                  </label>
+                  <input
+                    type="number"
+                    id="quantity"
+                    className="form-control"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
+                </div>
+              </div>
+
               <button
                 type="button"
                 className="btn btn-secondary"
@@ -73,21 +118,6 @@ const Modal = () => {
                 Submit
               </button>
             </div>
-            <select className="form-select" aria-label="Default select example">
-              onChange={9e}
-
-              <option selected>Open this select menu</option>
-              <option value={'O+'}>O+</option>
-              <option value={'O-'}>O-</option>
-              <option value={'AB+'}>AB+</option>
-              <option value={'AB-'}>AB-</option>
-              <option value={'A+'}>A+</option>
-              <option value={'A-'}>A-</option>
-              <option value={'B+'}>B+</option>
-              <option value={'B-'}>B-</option>
-
-
-            </select>
           </div>
         </div>
       </div>
