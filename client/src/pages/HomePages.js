@@ -16,7 +16,7 @@ const HomePages = () => {
       const { data } = await API.get("/inventory/get-inventory");
       if (data?.success) {
         setData(data?.inventory);
-        console.log(data);
+        // console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -41,7 +41,7 @@ const HomePages = () => {
               style={{ cursor: "pointer" }}
             >
               <i className="fa-solid fa-plus text-success py-4"></i>
-              Add Inventory
+              Manage Blood Record
             </h4>
 
             <table className="table">
@@ -50,8 +50,8 @@ const HomePages = () => {
                   <th scope="col">Blood Group</th>
                   <th scope="col">InventoryType</th>
                   <th scope="col">Quantity</th>
-                  <th scope="col">DonarEmail</th>
-                  <th scope="col">Time &Date</th>
+                  <th scope="col">Donar Email</th>
+                  <th scope="col">Time & Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -59,7 +59,7 @@ const HomePages = () => {
                   <tr key={record._id}>
                     <td>{record.bloodGroup}</td>
                     <td>{record.inventoryType}</td>
-                    <td>{record.quantity}</td>
+                    <td>{record.quantity} ml</td>
                     <td>{record.donarEmail}</td>
                     <td>
                       {moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}
