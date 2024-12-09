@@ -7,7 +7,7 @@ const Modal = () => {
   const [inventoryType, setInventoryType] = useState("in");
   const [bloodGroup, setBloodGroup] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [donarEmail, setDonarEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((state) => state.auth);
 
@@ -20,8 +20,7 @@ const Modal = () => {
 
     try {
       const { data } = await API.post("/inventory/create-inventory", {
-        donarEmail,
-        email: user?.email,
+        email,
         organisation: user?._id,
         inventoryType,
         bloodGroup,
@@ -115,10 +114,10 @@ const Modal = () => {
               LabelText="Email"
               LabelFor="donarEmail"
               inputType="email"
-              value={donarEmail}
+              value={email}
               id="donarEmail"
               name="donarEmail"
-              onChange={(e) => setDonarEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <InputType
               LabelText="Quantity (ml)"

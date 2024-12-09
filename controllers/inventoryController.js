@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 const createInventoryController = async (req, res) => {
   try {
-    const { email, inventoryType } = req.body;
+    const { email } = req.body;
     const user = await userModel.findOne({ email });
 
     if (!user) {
@@ -69,8 +69,10 @@ const createInventoryController = async (req, res) => {
         });
       }
       req.body.hospital = user?.id;
+    } else {
+      req.body.donar = user?._id;
     }
-
+    //save record
     const inventory = new inventoryModel(req.body);
     await inventory.save();
 
@@ -114,4 +116,57 @@ const getInventoryController = async (req, res) => {
     });
   }
 };
-module.exports = { createInventoryController, getInventoryController };
+
+//get donar records
+const getDonarsController = async (req, res) => {
+  try {
+    const organisation = req.body.userId;
+    //find donars
+    const donarId = await inventoryModel.distinct("donar", {
+      organisation,
+    });
+    //console.log(donarId);
+    const donars = await userModel.find({ _id: { $in: donarId } });
+
+    return res.status(200).send({
+      success: true,
+      message: "Donar Record Fetched Successfully",
+      donars,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send({
+      success: false,
+      message: "Error in Donar records",
+      error,
+    });
+  }
+};
+
+const getHospitalController =  async (req,res) => {
+     try {
+      const organisation = req.body.userId
+      //get hospital id
+      const hospitalId = await inventoryModel.distinct('hospital', {organisation})
+      //find hospital
+      const hospitals = await userModel.find({
+        _id: {$in: hospitalId}
+      })
+
+
+     } catch (error) {
+      console.log(error)
+      return res.status(500).send({
+        success:false,
+        message:'Error In get Hospital API',
+        error
+      }) 
+     }
+};
+
+module.exports = {
+  createInventoryController,
+  getInventoryController,
+  getDonarsController,
+  getHospitalController,
+};
